@@ -6,10 +6,33 @@
         height: 300px;
         width: 480px;
       }
+      button {
+        border: 1px solid #eee;
+        cursor: pointer;
+        font-size: 16px;
+        margin-right: 10px;
+        padding: 5px 10px;
+        transition: background 0.3s linear;
+      }
+      button:hover {
+        background: #eee;
+      }
+      .options {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+      }
     </style>
   </head>
   <body>
+    <div class="options">
+      <button id="this-article">This Article</button>
+      <button id="my-profile">My Profile</button>
+      <button id="my-history">My History</button>
+    </div>
     <canvas id="canvas"></canvas>
+    <script src="canvas.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
