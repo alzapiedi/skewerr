@@ -14,8 +14,15 @@
         padding: 5px 10px;
         transition: background 0.3s linear;
       }
+      button.active, button.active:hover {
+        background: #ddddff;
+      }
       button:hover {
         background: #eee;
+      }
+      button:disabled:hover {
+        background: #fff;
+        cursor: default;
       }
       .options {
         align-items: center;
@@ -27,7 +34,7 @@
   </head>
   <body>
     <div class="options">
-      <button id="this-article">This Article</button>
+      <button id="this-article" disabled>This Article</button>
       <button id="my-profile">My Profile</button>
       <button id="my-history">My History</button>
     </div>

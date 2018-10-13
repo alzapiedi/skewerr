@@ -39,11 +39,11 @@ function drawAxes() {
 
 function drawGradient() {
   const blue = ctx.createLinearGradient(0,0,WIDTH/2,0);
-  blue.addColorStop(0, '#ddddff');
+  blue.addColorStop(0, '#bbbbdd');
   blue.addColorStop(1, '#ffffff');
   const red = ctx.createLinearGradient(WIDTH/2,0,WIDTH,0);
   red.addColorStop(0, '#ffffff');
-  red.addColorStop(1, '#ffdddd');
+  red.addColorStop(1, '#ddbbbb');
 
   ctx.fillStyle = blue;
   ctx.fillRect(0,0,WIDTH/2,HEIGHT);
@@ -65,6 +65,11 @@ function mapHorizontalVerticalToPoint({ horizontal, vertical }) {
   const x = horizontalOffset + (horizontal * horizontalScaleFactor);
   const y = HEIGHT - (vertical * verticalScaleFactor);
   return { x, y };
+}
+
+function clearGraph() {
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,WIDTH,HEIGHT);
 }
 
 function drawCanvas() {
