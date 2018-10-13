@@ -2,7 +2,8 @@
 const HEIGHT = 320;
 const WIDTH = 480;
 const GRID_COLOR = '#eee';
-const INTERVAL = WIDTH / 10;
+const X_INTERVALS = 7;
+const Y_INTERVALS = 8;
 
 const canvas = document.getElementById('canvas');
 canvas.height = HEIGHT;
@@ -11,14 +12,12 @@ const ctx = canvas.getContext('2d');
 
 function drawGrid() {
   ctx.lineWidth = 1;
-  for (let i = 1; i * INTERVAL < WIDTH / 2; i++) {
-    const x1 = (WIDTH / 2) + (INTERVAL * i);
-    const x2 = (WIDTH / 2) - (INTERVAL * i);
+  for (let i = 0; i < X_INTERVALS; i++) {
+    const x1 = (WIDTH / X_INTERVALS) * i;
     drawLine(x1, 0, x1, HEIGHT);
-    drawLine(x2, 0, x2, HEIGHT);
   }
-  for (let i = 1; i * INTERVAL < HEIGHT; i++) {
-    const y = HEIGHT - (i*INTERVAL)
+  for (let i = 1; i < Y_INTERVALS; i++) {
+    const y = HEIGHT - (i * HEIGHT / Y_INTERVALS)
     drawLine(0, y, WIDTH, y);
   }
 }
@@ -39,11 +38,11 @@ function drawAxes() {
 
 function drawGradient() {
   const blue = ctx.createLinearGradient(0,0,WIDTH/2,0);
-  blue.addColorStop(0, '#bbbbdd');
+  blue.addColorStop(0, '#9999ee');
   blue.addColorStop(1, '#ffffff');
   const red = ctx.createLinearGradient(WIDTH/2,0,WIDTH,0);
   red.addColorStop(0, '#ffffff');
-  red.addColorStop(1, '#ddbbbb');
+  red.addColorStop(1, '#ee9999');
 
   ctx.fillStyle = blue;
   ctx.fillRect(0,0,WIDTH/2,HEIGHT);
@@ -59,8 +58,8 @@ function drawPoint({ x, y }) {
 }
 
 function mapHorizontalVerticalToPoint({ horizontal, vertical }) {
-  const horizontalScaleFactor = 5.45;
-  const verticalScaleFactor = 5;
+  const horizontalScaleFactor = ((WIDTH / 2) / 44) - 0.1;
+  const verticalScaleFactor = (HEIGHT / 64) - 0.1;
   const horizontalOffset = WIDTH / 2;
   const x = horizontalOffset + (horizontal * horizontalScaleFactor);
   const y = HEIGHT - (vertical * verticalScaleFactor);

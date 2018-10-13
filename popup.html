@@ -2,17 +2,28 @@
 <html>
   <head>
     <style>
+      body {
+        position: relative;
+      }
       canvas {
-        height: 300px;
+        height: 320px;
         width: 480px;
       }
       button {
+        align-items: center;
         border: 1px solid #eee;
+        display: flex;
+        flex: 1;
         cursor: pointer;
         font-size: 16px;
+        justify-content: center;
         margin-right: 10px;
         padding: 5px 10px;
         transition: background 0.3s linear;
+        white-space: nowrap;
+      }
+      button:last-child {
+        margin-right: 0;
       }
       button.active, button.active:hover {
         background: #ddddff;
@@ -24,22 +35,83 @@
         background: #fff;
         cursor: default;
       }
-      .options {
+      .nav {
         align-items: center;
         display: flex;
+        margin-bottom: 10px;
         justify-content: center;
-        padding: 10px;
+      }
+      #logo {
+        margin-right: 10px;
+      }
+      .source-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .source {
+        align-items: center;
+        display: flex;
+        height: 65px;
+      }
+      .source-details {
+        display: flex;
+        flex-direction: column;
+      }
+      #popover {
+        background: rgba(245,245,245,0.8);
+        padding: 5px 10px;
+        position: absolute;
+        width: 80px;
+      }
+      .hidden {
+        display: none;
+      }
+      #heading {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      #subheading {
+        font-style: italic;
+      }
+      #nonmatching {
+        font-style: italic;
+        font-weight: normal;
+        color: #ddd;
+      }
+      #source-score {
+        align-items: center;
+        border: 2px solid #d2d8e6;
+        display: flex;
+        font-size: 16px;
+        font-weight: bold;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
       }
     </style>
   </head>
   <body>
-    <div class="options">
-      <button id="this-article" disabled>This Article</button>
-      <button id="my-profile">My Profile</button>
+    <div id="popover" class="hidden"></div>
+    <div class="source-container">
+      <div class="source">
+        <img id="logo"></img>
+        <div class="source-details">
+          <span id="heading"></span>
+          <span id="subheading"></span>
+          <span id="nonmatching"></span>
+        </div>
+      </div>
+      <div id="source-score" class="hidden"></div>
+    </div>
+    <div class="nav">
+      <button id="this-article" disabled>This Source</button>
+      <button id="my-profile">My Average</button>
       <button id="my-history">My History</button>
+      <button id="legend">Legend</button>
     </div>
     <canvas id="canvas"></canvas>
-    <script src="canvas.js"></script>
-    <script src="popup.js"></script>
   </body>
+  <script src="canvas.js"></script>
+  <script src="popup.js"></script>
 </html>
